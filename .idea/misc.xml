@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/arrow_down.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/boarder_state.xml" value="0.3185" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/bold_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/capital_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/checkmark.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/color_1.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/color_2.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/color_icon.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/container_delete.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/container_flip.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/default_boarder.xml" value="0.3185" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/gray_boarder.xml" value="0.3185" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/ic_profile_user.xml" value="0.16" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/icon_boarder.xml" value="0.16" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/images.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/italic_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_bg.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_bold_off.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_camera.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_italic_off.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_text_off.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_text_underline_on.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/small_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/small_un.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/svg_layers.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/svg_sticker.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/text_style.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/underline_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_editing_screen.xml" value="0.2046875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_main.xml" value="0.32083333333333336" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/font_container_text.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/image_container_svg.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/layer_item.xml" value="0.3171875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/layers_container_svg.xml" value="0.4" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_container_text.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_layout_sticker.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/size_container_text.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/sticker_container_svg.xml" value="0.176" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/style_container_text.xml" value="0.264" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/svg_container.xml" value="0.17608897126969417" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/svg_menu.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/text_container.xml" value="0.2" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/text_menu.xml" value="0.176" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

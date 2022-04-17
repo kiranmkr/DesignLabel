@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">DesignLabel</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="images">Images</string>
+    <string name="save">Save</string>
+    <string name="label_maker">Label Maker</string>
+
+    <string name="home">Home</string>
+    <string name="my_work">My Work</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="our_more_apps">Our More Apps</string>
+    <string name="share_app">Share App</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="all_in_different">All In Different</string>
+    <string name="shapes">Shapes</string>
+    <string name="free">FREE</string>
+
+    <string name="pdf">PDF</string>
+
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="layers">Layers</string>
+    <string name="sticker">Stickers</string>
+    <string name="add_text">Add Text</string>
+
+    <string name="opacity">Opacity</string>
+
+    <string name="import_shape">Import\nShape</string>
+    <string name="import_sticker">Import\nSticker</string>
+
+    <string name="font">Font</string>
+    <string name="size">Size</string>
+    <string name="color">Color</string>
+    <string name="text_style">Text Style</string>
+
+    <string name="custom">Custom</string>
+    <string name="menu">Menu</string>
+
+    <string name="trending">Trending</string>
+
+    <string name="choose_one">Choose One</string>
+
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="type_here">Type Here</string>
+
+    <string name="filter_not_found">Filter not Found.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_image_file">Save Image File</string>
+    <string name="or">or</string>
+
+    <string name="str_already_subscribed">Already Subscribed</string>
+    <string name="watch_an_ad_to_unlock_this_pro_template_now_or_get_our_premium_membership_to_unlock_all_templates_and_enjoy_ad_free_version">Watch an ad to unlock this pro template now, or get our premium membership to unlock all templates and enjoy ad-free version.</string>
+    <string name="watch_ad">Watch Ad</string>
+    <string name="buy_premium_version">Buy Premium Version</string>
+
+    <string name="save_png">Save as PNG </string>
+    <string name="share_png">Share as PNG </string>
+    <string name="save_jpg">Save as JPG</string>
+    <string name="share_jpg">Share as JPG</string>
+    <string name="save_pdf">Save as PDF</string>
+    <string name="share_pdf">Share as PDF</string>
+    <string name="cancel">Cancel</string>
+    <string name="share_file">Share File</string>
+
+    <string name="file_not_found">File not Found.</string>
+    <string name="save_single_label">Save Single Label</string>
+    <string name="save_label_sheet">Save Label Sheet</string>
+    <string name="save_to_gallery">Save to Gallery</string>
+    <string name="save_in_pdf">Save In PDF</string>
+    <string name="share">Share</string>
+    <string name="enter_label_size">Enter Label Size</string>
+    <string name="width_inch">Width(inch)</string>
+    <string name="height_inch">Height(inch)</string>
+    <string name="create_sheet">Create Sheet</string>
+    <string name="reset">Reset?</string>
+    <string name="print">Print</string>
+</resources>

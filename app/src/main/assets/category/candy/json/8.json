@@ -1,0 +1,80 @@
+{
+  "AbsoluteLayout": {
+    "ImageView": [
+      {
+        "_android:id": "@+id/imageView",
+        "_android:layout_width": "300dp",
+        "_android:layout_height": "300dp",
+        "_android:background": "#AE7690"
+      },
+      {
+        "_android:id": "@+id/imageView52",
+        "_android:layout_width": "39dp",
+        "_android:layout_height": "43dp",
+        "_android:layout_x": "12dp",
+        "_android:layout_y": "55dp",
+        "_app:srcCompat": "@drawable/_1"
+      },
+      {
+        "_android:id": "@+id/imageView53",
+        "_android:layout_width": "163dp",
+        "_android:layout_height": "263dp",
+        "_android:layout_x": "12dp",
+        "_android:layout_y": "15dp",
+        "_app:srcCompat": "@drawable/_2"
+      },
+      {
+        "_android:id": "@+id/imageView54",
+        "_android:layout_width": "214dp",
+        "_android:layout_height": "118dp",
+        "_android:layout_x": "49dp",
+        "_android:layout_y": "70dp",
+        "_app:srcCompat": "@drawable/_3"
+      },
+      {
+        "_android:id": "@+id/imageView55",
+        "_android:layout_width": "109dp",
+        "_android:layout_height": "60dp",
+        "_android:layout_x": "71dp",
+        "_android:layout_y": "101dp",
+        "_app:srcCompat": "@drawable/_4"
+      },
+      {
+        "_android:id": "@+id/imageView56",
+        "_android:layout_width": "244dp",
+        "_android:layout_height": "252dp",
+        "_android:layout_x": "50dp",
+        "_android:layout_y": "15dp",
+        "_app:srcCompat": "@drawable/_5"
+      },
+      {
+        "_android:id": "@+id/imageView57",
+        "_android:layout_width": "46dp",
+        "_android:layout_height": "39dp",
+        "_android:layout_x": "102dp",
+        "_android:layout_y": "99dp",
+        "_app:srcCompat": "@drawable/_6"
+      }
+    ],
+    "TextView": [
+      {
+        "_android:id": "@+id/textView7",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "115dp",
+        "_android:layout_y": "140dp",
+        "_android:fontFamily": "@font/bacem",
+        "_android:rotation": "304",
+        "_android:text": "Candy Shop",
+        "_android:letterSpacing": "0.05",
+        "_android:textColor": "#D2C0D5",
+        "_android:textSize": "45sp"
+      }
+    ],
+    "_xmlns:android": "http://schemas.android.com/apk/res/android",
+    "_xmlns:app": "http://schemas.android.com/apk/res-auto",
+    "_android:layout_width": "300dp",
+    "_android:layout_height": "300dp",
+    "_android:background": "@color/black"
+  }
+}
