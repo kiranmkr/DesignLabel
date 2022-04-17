@@ -184,6 +184,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick {
         })
 
         mColor = R.color.colorAccent
+
         svgColorPickerImage?.setOnClickListener {
 
             ColorPickerDialog
@@ -452,9 +453,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick {
 
     private fun loadJSONFromAsset(): String? {
 
-        var json: String? = null
-
-        json = try {
+        val json: String? = try {
             val `is`: InputStream =
                 this.assets.open("category/$categoryName/json/$labelNumber.json")
             val size = `is`.available()

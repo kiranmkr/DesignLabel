@@ -35,9 +35,6 @@ android {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
-    dexOptions {
-        javaMaxHeapSize "8g"
-    }
     buildFeatures {
         viewBinding true
     }
