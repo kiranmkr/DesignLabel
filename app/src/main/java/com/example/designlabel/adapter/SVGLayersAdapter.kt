@@ -1,6 +1,7 @@
 package com.example.designlabel.adapter
 
-import android.graphics.Color
+
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +13,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.designlabel.R
 import com.example.designlabel.utils.App
 
-
 class SVGLayersAdapter(
-    var list: ArrayList<String>,
+    private var list: ArrayList<String>,
     itemCallBack: SvgLayersClick
 ) :
     RecyclerView.Adapter<SVGLayersAdapter.ViewHolder>() {
 
     private var callBack: SvgLayersClick = itemCallBack
-    private var selection: Int? = null
+    private var selection: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SVGLayersAdapter.ViewHolder {
 
@@ -38,9 +38,7 @@ class SVGLayersAdapter(
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.thumbNail)
 
-        if (selection != null) {
-            holder.layerSelection.isSelected = position == selection
-        }
+        holder.layerSelection.isSelected = position == selection
 
     }
 
@@ -50,14 +48,10 @@ class SVGLayersAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var thumbNail: ImageView
-        var layerSelection :ConstraintLayout
-
+        var thumbNail: ImageView = itemView.findViewById(R.id.imageView52)
+        var layerSelection :ConstraintLayout = itemView.findViewById(R.id.layer)
 
         init {
-
-            thumbNail = itemView.findViewById(R.id.imageView52)
-            layerSelection = itemView.findViewById(R.id.layer)
 
             itemView.setOnClickListener {
                 callBack.setOnLayersClickListener(adapterPosition)
@@ -68,6 +62,7 @@ class SVGLayersAdapter(
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setSelection(position: Int) {
         selection = position
         notifyDataSetChanged()

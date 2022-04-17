@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/ic_check.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/ic_clear.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/image_placeholder.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/my_border.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/shape_black_border.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/arrow_down.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/boarder_state.xml" value="0.3185" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/bold_state.xml" value="0.123" />
@@ -25,6 +30,7 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_italic_off.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_text_off.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_text_underline_on.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/shape_black_border.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/small_state.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/small_un.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/svg_layers.xml" value="0.123" />
@@ -33,15 +39,19 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/underline_state.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_editing_screen.xml" value="0.2046875" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_main.xml" value="0.32083333333333336" />
-        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/font_container_text.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/add_text_dialog.xml" value="0.2046875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/font_container_text.xml" value="0.4" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/image_container_svg.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/layer_item.xml" value="0.3171875" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/layers_container_svg.xml" value="0.4" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/new_image_sticker.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_container_text.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_layout_sticker.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/re_font_view.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/size_container_text.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/sticker_container_svg.xml" value="0.176" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/style_container_text.xml" value="0.264" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/svg_color_item.xml" value="0.264" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/svg_container.xml" value="0.17608897126969417" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/svg_menu.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/text_container.xml" value="0.2" />

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.designlabel.fragments.CategoryFragment.Companion.newInstance
-import com.example.designlabel.utils.Constants
+import com.example.designlabel.utils.Constant
 
 class ViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
 
@@ -13,7 +13,7 @@ class ViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragme
     }
 
     override fun getItemCount(): Int {
-        return Constants.categoryMap.size
+        return Constant.categoryMap.size
     }
 
     companion object {
