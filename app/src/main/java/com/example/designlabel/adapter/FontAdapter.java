@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.designlabel.R;
 import com.example.designlabel.customCallBack.FontAdapterCallBack;
 
@@ -37,13 +39,12 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-
         holder.fontName.setTypeface(Typeface.createFromAsset(mcontext.getAssets(), "font/" + mFontList[position]));
 
         if (selection != null) {
 
             if (position == selection) {
-                holder.fontName.setTextColor(Color.parseColor("#b39ddb"));
+                holder.fontName.setTextColor(Color.parseColor("#3D5FFA"));
             } else {
                 holder.fontName.setTextColor(Color.BLACK);
             }

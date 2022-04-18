@@ -87,7 +87,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     private var svgColor: RecyclerView? = null
 
 
-
     private var mColor = 0
 
     private var textRoot: View? = null
@@ -344,6 +343,30 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
     private fun clickHandler() {
 
+        rootLayout?.setOnClickListener {
+
+            if (textRoot?.visibility == View.VISIBLE) {
+                textRoot?.visibility = View.GONE
+            }
+
+            if (layerRoot?.visibility == View.GONE) {
+                layerRoot?.visibility = View.VISIBLE
+            }
+
+            if (currentText != null) {
+                currentText!!.setBackgroundColor(Color.TRANSPARENT)
+            }
+
+            if (stickerRoot?.visibility == View.VISIBLE){
+                stickerRoot?.visibility = View.GONE
+            }
+
+            if (newCustomSticker != null){
+                newCustomSticker?.disableAllOthers()
+            }
+
+        }
+
         //code svg Seek Alpha
         svgSeekAlpha?.max = 10
         svgSeekAlpha?.progress = 10
@@ -383,13 +406,13 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
                 mColor = color
                 Log.d("myColor", "$mColor")
 
-                if (textRoot?.visibility == View.VISIBLE){
+                if (textRoot?.visibility == View.VISIBLE) {
 
                     if (currentText != null) {
                         currentText!!.setTextColor(mColor)
                     }
 
-                }else{
+                } else {
                     if (currentLayer != null) {
                         currentLayer?.setColorFilter(mColor)
                     } else {
@@ -522,6 +545,14 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
         textOpacity?.setOnClickListener(textMenuClickListener)
         textStyle?.setOnClickListener(textMenuClickListener)
 
+        textDownBtn?.setOnClickListener {
+            textRoot?.visibility = View.GONE
+            alphaManagerForAll(this, textContainerIcon)
+            if (layerRoot?.visibility == View.GONE) {
+                layerRoot?.visibility = View.VISIBLE
+            }
+        }
+
         svgDownBtn?.setOnClickListener {
             svgDownBtn?.visibility = View.GONE
             svgRootContainer?.visibility = View.GONE
@@ -555,6 +586,26 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
         updateSVGColorAdapter()
 
+        stickerRoot?.setOnClickListener(emptyClickListener)
+
+        stickerDelete?.setOnClickListener {
+            newCustomSticker?.deleteObject()
+            stickerRoot?.visibility = View.GONE
+        }
+
+        stickerCheckmark?.setOnClickListener {
+            newCustomSticker?.disableAllOthers()
+            stickerRoot?.visibility = View.GONE
+        }
+
+        stickerFlip?.setOnClickListener {
+            newCustomSticker?.flipRoot()
+        }
+
+    }
+
+    private val emptyClickListener = View.OnClickListener {
+        Log.d("myEmptyClick", "Clickc")
     }
 
     private fun alphaManagerForAll(activity: Activity, views: ArrayList<Any?>) {
@@ -1196,6 +1247,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
     @SuppressLint("ClickableViewAccessibility")
     private fun addText(artist: ArrayList<TextView>) {
+
         artist.forEachIndexed { _, textView ->
 
             newTextView = android.widget.TextView(this@EditingScreen)
@@ -1386,7 +1438,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
         }
 
-
         if (currentText!!.alpha.toString().replace("0.", "") == "1.0") {
             tvSeekAlpha!!.progress = 10
         } else {
@@ -1462,7 +1513,72 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun addText(string: String?) {
+
+        if (string != null) {
+
+            val newText = android.widget.TextView(this)
+
+            newText.id = View.generateViewId()
+            newText.text = string
+            newText.isCursorVisible = false
+            newText.setTextColor(Color.BLACK)
+
+            val params = RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+            )
+            newText.layoutParams = params
+
+            val textSizePx = Utils.dpToPx(30f, this)
+
+            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
+
+            newText.y = 100f
+            newText.x = 150f
+
+            rootLayout!!.addView(newText)
+
+            if (rootLayout?.childCount != 0) {
+
+                for (i in 0 until rootLayout!!.childCount) {
+
+                    if (rootLayout!!.getChildAt(i) is android.widget.TextView) {
+
+                        val textView = rootLayout!!.getChildAt(i) as android.widget.TextView
+
+                        val viewTreeObserver = textView.viewTreeObserver
+
+                        if (viewTreeObserver.isAlive) {
+
+                            viewTreeObserver.addOnGlobalLayoutListener(object :
+                                ViewTreeObserver.OnGlobalLayoutListener {
+
+                                override fun onGlobalLayout() {
+                                    textView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                                    /*  parentWidth = layoutMove!!.width
+                                      parentHeight = layoutMove!!.height
+                                      newTextColor = textView.currentTextColor*/
+
+                                }
+                            })
+                        }
+
+                        val moveViewTouchListener =
+                            MoveViewTouchListener(
+                                this,
+                                rootLayout!!.getChildAt(i) as android.widget.TextView
+                            )
+                        rootLayout!!.getChildAt(i).setOnTouchListener(moveViewTouchListener)
+                        moveViewTouchListener.callBacks = this
+                    }
+                }
+            }
+
+        } else {
+            Log.d("myTextValue", "Text is null")
+        }
 
     }
 

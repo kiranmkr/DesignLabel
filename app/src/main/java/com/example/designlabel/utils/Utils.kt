@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
+import android.util.TypedValue
 import android.widget.Toast
 import java.io.File
 import java.io.FileInputStream
@@ -73,6 +74,13 @@ object Utils {
     } catch (ex: IOException) {
         ex.printStackTrace()
         null
+    }
+
+    fun dpToPx(dp: Float, context: Context): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, dp,
+            context.resources.displayMetrics
+        ).toInt()
     }
 
     fun clearGarbageCollection() {
