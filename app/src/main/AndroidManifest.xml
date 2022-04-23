@@ -31,27 +31,27 @@
             android:name=".ui.EditingScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:exported="true">
+            tools:ignore="LockedOrientationActivity">
 
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <activity
             android:name=".ui.SplashScreen"
             android:configChanges="orientation"
+            android:exported="true"
             android:label="@string/title_activity_splash_screen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DesignLabel"
-            tools:ignore="LockedOrientationActivity">
-           <!-- <intent-filter>
+            android:theme="@style/Theme.DesignLabel">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.MainActivity"

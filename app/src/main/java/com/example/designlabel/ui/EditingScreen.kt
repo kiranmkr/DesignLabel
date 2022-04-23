@@ -60,8 +60,8 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     private val workerThread: ExecutorService = Executors.newCachedThreadPool()
     private val workerHandler = Handler(Looper.getMainLooper())
 
-    private var categoryName: String = "candy"
-    private var labelNumber: Int = 3
+    private var categoryName: String = Constant.categoryName
+    private var labelNumber: Int = Constant.labelNumber
 
     private var imageViewArray: ArrayList<ImageView> = ArrayList()
     private var textViewJson: ArrayList<TextView> = ArrayList()

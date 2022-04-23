@@ -1,0 +1,51 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:layout_x": "0dp",
+				"_android:layout_y": "0dp",
+				"_app:srcCompat": "@drawable/_0"
+			},
+			{
+				"_android:id": "@+id/imageView2",
+				"_android:layout_width": "257dp",
+				"_android:layout_height": "226dp",
+				"_android:layout_x": "21dp",
+				"_android:layout_y": "36dp",
+				"_app:srcCompat": "@drawable/_1"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView3",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "2dp",
+				"_android:layout_y": "35dp",
+				"_android:fontFamily": "@font/krinkes_decor",
+				"_android:text": "Ramadan",
+				"_android:textColor": "#4F4E46",
+				"_android:textSize": "40sp"
+			},
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "147dp",
+				"_android:layout_y": "6dp",
+				"_android:fontFamily": "@font/krinkes_decor",
+				"_android:text": "Mubarak",
+				"_android:textColor": "#4F4E46",
+				"_android:textSize": "40sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

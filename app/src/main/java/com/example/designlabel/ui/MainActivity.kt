@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.example.designlabel.adapter.TrendingAdapter
 import com.example.designlabel.databinding.ActivityMainBinding
 import com.example.designlabel.interfacecallback.TemplateClickCallBack
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity(), TemplateClickCallBack {
 
     private fun updateTrendingAdapter() {
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = TrendingAdapter("category", this)
+        binding.recyclerView.adapter = TrendingAdapter("ramzan", this)
     }
 
     private fun updateViewPagerAdapter() {

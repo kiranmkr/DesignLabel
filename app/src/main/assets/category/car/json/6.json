@@ -1,0 +1,62 @@
+{
+  "AbsoluteLayout": {
+    "ImageView": [
+      {
+        "_android:id": "@+id/imageView",
+        "_android:layout_width": "300dp",
+        "_android:layout_height": "300dp",
+        "_android:background": "#313131"
+      },
+      {
+        "_android:id": "@+id/imageView2",
+        "_android:layout_width": "192dp",
+        "_android:layout_height": "176dp",
+        "_android:layout_x": "50dp",
+        "_android:layout_y": "22dp",
+        "_app:srcCompat": "@drawable/_1"
+      },
+      {
+        "_android:id": "@+id/imageView3",
+        "_android:layout_width": "196dp",
+        "_android:layout_height": "189dp",
+        "_android:layout_x": "51dp",
+        "_android:layout_y": "20dp",
+        "_app:srcCompat": "@drawable/_2"
+      },
+      {
+        "_android:id": "@+id/imageView4",
+        "_android:layout_width": "123dp",
+        "_android:layout_height": "123dp",
+        "_android:layout_x": "88dp",
+        "_android:layout_y": "56dp",
+        "_app:srcCompat": "@drawable/_3"
+      },
+      {
+        "_android:id": "@+id/imageView5",
+        "_android:layout_width": "90dp",
+        "_android:layout_height": "52dp",
+        "_android:layout_x": "101dp",
+        "_android:layout_y": "115dp",
+        "_app:srcCompat": "@drawable/_4"
+      }
+    ],
+    "TextView": [
+      {
+        "_android:id": "@+id/textView",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "21dp",
+        "_android:layout_y": "215dp",
+        "_android:fontFamily": "@font/bree_bold",
+        "_android:text": "Car Services",
+        "_android:textColor": "#FFFFFF",
+        "_android:textSize": "48sp"
+      }
+    ],
+    "_xmlns:android": "http://schemas.android.com/apk/res/android",
+    "_xmlns:app": "http://schemas.android.com/apk/res-auto",
+    "_android:layout_width": "300dp",
+    "_android:layout_height": "300dp",
+    "_android:background": "@color/black"
+  }
+}

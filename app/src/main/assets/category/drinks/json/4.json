@@ -1,0 +1,144 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#FFFFFF"
+			},
+			{
+				"_android:id": "@+id/imageView8",
+				"_android:layout_width": "285dp",
+				"_android:layout_height": "222dp",
+				"_android:layout_x": "6dp",
+				"_android:layout_y": "38dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView10",
+				"_android:layout_width": "261dp",
+				"_android:layout_height": "265dp",
+				"_android:layout_x": "20dp",
+				"_android:layout_y": "17dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView11",
+				"_android:layout_width": "222dp",
+				"_android:layout_height": "289dp",
+				"_android:layout_x": "38dp",
+				"_android:layout_y": "6dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView12",
+				"_android:layout_width": "38dp",
+				"_android:layout_height": "68dp",
+				"_android:layout_x": "184dp",
+				"_android:layout_y": "8dp",
+				"_app:srcCompat": "@drawable/_4"
+			},
+			{
+				"_android:id": "@+id/imageView13",
+				"_android:layout_width": "24dp",
+				"_android:layout_height": "49dp",
+				"_android:layout_x": "192dp",
+				"_android:layout_y": "21dp",
+				"_app:srcCompat": "@drawable/_5"
+			},
+			{
+				"_android:id": "@+id/imageView14",
+				"_android:layout_width": "121dp",
+				"_android:layout_height": "121dp",
+				"_android:layout_x": "91dp",
+				"_android:layout_y": "18dp",
+				"_app:srcCompat": "@drawable/_6"
+			},
+			{
+				"_android:id": "@+id/imageView15",
+				"_android:layout_width": "103dp",
+				"_android:layout_height": "103dp",
+				"_android:layout_x": "100dp",
+				"_android:layout_y": "27dp",
+				"_app:srcCompat": "@drawable/_7"
+			},
+			{
+				"_android:id": "@+id/imageView16",
+				"_android:layout_width": "58dp",
+				"_android:layout_height": "41dp",
+				"_android:layout_x": "124dp",
+				"_android:layout_y": "51dp",
+				"_app:srcCompat": "@drawable/_8"
+			},
+			{
+				"_android:id": "@+id/imageView17",
+				"_android:layout_width": "53dp",
+				"_android:layout_height": "53dp",
+				"_android:layout_x": "79dp",
+				"_android:layout_y": "85dp",
+				"_app:srcCompat": "@drawable/_9"
+			},
+			{
+				"_android:id": "@+id/imageView18",
+				"_android:layout_width": "37dp",
+				"_android:layout_height": "37dp",
+				"_android:layout_x": "88dp",
+				"_android:layout_y": "94dp",
+				"_app:srcCompat": "@drawable/_10"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView3",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "68dp",
+				"_android:layout_y": "160dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "ORANGE",
+				"_android:textAlignment": "center",
+				"_android:textColor": "#C75F0F",
+				"_android:textSize": "34sp"
+			},
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "84dp",
+				"_android:layout_y": "199dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "JUICE",
+				"_android:textAlignment": "center",
+				"_android:textColor": "#C75F0F",
+				"_android:textSize": "34sp"
+			},
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "181dp",
+				"_android:layout_y": "241dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "FRESH",
+				"_android:textColor": "#FFFFFF",
+				"_android:textSize": "16sp"
+			},
+			{
+				"_android:id": "@+id/textView6",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "98dp",
+				"_android:layout_y": "268dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "100% NATURAL",
+				"_android:textColor": "#75AB17"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

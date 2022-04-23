@@ -1,0 +1,65 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#49A186"
+			},
+			{
+				"_android:id": "@+id/imageView6",
+				"_android:layout_width": "164dp",
+				"_android:layout_height": "10dp",
+				"_android:layout_x": "67dp",
+				"_android:layout_y": "200dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView7",
+				"_android:layout_width": "258dp",
+				"_android:layout_height": "105dp",
+				"_android:layout_x": "20dp",
+				"_android:layout_y": "154dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView8",
+				"_android:layout_width": "209dp",
+				"_android:layout_height": "187dp",
+				"_android:layout_x": "45dp",
+				"_android:layout_y": "28dp",
+				"_app:srcCompat": "@drawable/_3"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView2",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "63dp",
+				"_android:layout_y": "218dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "vintage cars",
+				"_android:textColor": "#DBD32A",
+				"_android:textSize": "24sp"
+			},
+			{
+				"_android:id": "@+id/textView3",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "63dp",
+				"_android:layout_y": "263dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "vehicle club",
+				"_android:textColor": "#1B1A15",
+				"_android:textSize": "24sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

@@ -1,0 +1,81 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#E6C049"
+			},
+			{
+				"_android:id": "@+id/imageView24",
+				"_android:layout_width": "287dp",
+				"_android:layout_height": "285dp",
+				"_android:layout_x": "7dp",
+				"_android:layout_y": "8dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView25",
+				"_android:layout_width": "91dp",
+				"_android:layout_height": "106dp",
+				"_android:layout_x": "170dp",
+				"_android:layout_y": "153dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView26",
+				"_android:layout_width": "120dp",
+				"_android:layout_height": "140dp",
+				"_android:layout_x": "107dp",
+				"_android:layout_y": "111dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView27",
+				"_android:layout_width": "168dp",
+				"_android:layout_height": "193dp",
+				"_android:layout_x": "86dp",
+				"_android:layout_y": "78dp",
+				"_app:srcCompat": "@drawable/_4"
+			},
+			{
+				"_android:id": "@+id/imageView28",
+				"_android:layout_width": "159dp",
+				"_android:layout_height": "206dp",
+				"_android:layout_x": "120dp",
+				"_android:layout_y": "70dp",
+				"_app:srcCompat": "@drawable/_5"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "64dp",
+				"_android:layout_y": "33dp",
+				"_android:fontFamily": "@font/bacem",
+				"_android:text": "Beauty",
+				"_android:textColor": "#DC7851",
+				"_android:textSize": "48sp"
+			},
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "41dp",
+				"_android:layout_y": "90dp",
+				"_android:fontFamily": "@font/bacem",
+				"_android:text": "Perfume",
+				"_android:textColor": "#DC7851",
+				"_android:textSize": "45sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

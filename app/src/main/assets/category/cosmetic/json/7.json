@@ -1,0 +1,99 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#E1E1E1"
+			},
+			{
+				"_android:id": "@+id/imageView21",
+				"_android:layout_width": "293dp",
+				"_android:layout_height": "282dp",
+				"_android:layout_x": "2dp",
+				"_android:layout_y": "7dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView22",
+				"_android:layout_width": "122dp",
+				"_android:layout_height": "150dp",
+				"_android:layout_x": "42dp",
+				"_android:layout_y": "124dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView23",
+				"_android:layout_width": "28dp",
+				"_android:layout_height": "80dp",
+				"_android:layout_x": "153dp",
+				"_android:layout_y": "102dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView24",
+				"_android:layout_width": "143dp",
+				"_android:layout_height": "50dp",
+				"_android:layout_x": "49dp",
+				"_android:layout_y": "196dp",
+				"_app:srcCompat": "@drawable/_4"
+			},
+			{
+				"_android:id": "@+id/imageView25",
+				"_android:layout_width": "64dp",
+				"_android:layout_height": "43dp",
+				"_android:layout_x": "192dp",
+				"_android:layout_y": "60dp",
+				"_app:srcCompat": "@drawable/_5"
+			},
+			{
+				"_android:id": "@+id/imageView26",
+				"_android:layout_width": "28dp",
+				"_android:layout_height": "28dp",
+				"_android:layout_x": "152dp",
+				"_android:layout_y": "97dp",
+				"_app:srcCompat": "@drawable/_6"
+			},
+			{
+				"_android:id": "@+id/imageView27",
+				"_android:layout_width": "175dp",
+				"_android:layout_height": "111dp",
+				"_android:layout_x": "67dp",
+				"_android:layout_y": "103dp",
+				"_app:srcCompat": "@drawable/_7"
+			},
+			{
+				"_android:id": "@+id/imageView28",
+				"_android:layout_width": "157dp",
+				"_android:layout_height": "150dp",
+				"_android:layout_x": "78dp",
+				"_android:layout_y": "124dp",
+				"_app:srcCompat": "@drawable/_8"
+			},
+			{
+				"_android:id": "@+id/imageView29",
+				"_android:layout_width": "156dp",
+				"_android:layout_height": "88dp",
+				"_android:layout_x": "79dp",
+				"_android:layout_y": "102dp",
+				"_app:srcCompat": "@drawable/_9"
+			}
+		],
+		"TextView":[ {
+			"_android:id": "@+id/textView4",
+			"_android:layout_width": "wrap_content",
+			"_android:layout_height": "wrap_content",
+			"_android:layout_x": "13dp",
+			"_android:layout_y": "51dp",
+			"_android:fontFamily": "@font/bacem",
+			"_android:text": "Beauty Salon",
+			"_android:textSize": "34sp"
+		}],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

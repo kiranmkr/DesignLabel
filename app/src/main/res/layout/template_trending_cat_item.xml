@@ -9,8 +9,8 @@
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         android:background="@drawable/cate_trending_boarder">
 
         <ImageView

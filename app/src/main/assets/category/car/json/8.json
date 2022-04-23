@@ -1,0 +1,79 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#49A186"
+			},
+			{
+				"_android:id": "@+id/imageView9",
+				"_android:layout_width": "243dp",
+				"_android:layout_height": "243dp",
+				"_android:layout_x": "28dp",
+				"_android:layout_y": "29dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView10",
+				"_android:layout_width": "253dp",
+				"_android:layout_height": "174dp",
+				"_android:layout_x": "23dp",
+				"_android:layout_y": "27dp",
+				"_app:srcCompat": "@drawable/_2"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "117dp",
+				"_android:layout_y": "47dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "Service",
+				"_android:textColor": "#F2DB00",
+				"_android:textSize": "16sp"
+			},
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "119dp",
+				"_android:layout_y": "66dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "Station",
+				"_android:textColor": "#F2DB00",
+				"_android:textSize": "16sp"
+			},
+			{
+				"_android:id": "@+id/textView6",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "126dp",
+				"_android:layout_y": "201dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "Coustom",
+				"_android:textColor": "#F2DB00",
+				"_android:textSize": "10sp"
+			},
+			{
+				"_android:id": "@+id/textView7",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "107dp",
+				"_android:layout_y": "215dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "garage",
+				"_android:textColor": "#F2DB00",
+				"_android:textSize": "24sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

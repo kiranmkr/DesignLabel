@@ -1,0 +1,82 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:layout_x": "0dp",
+				"_android:layout_y": "0dp",
+				"_android:background": "#EAE393"
+			},
+			{
+				"_android:id": "@+id/imageView8",
+				"_android:layout_width": "195dp",
+				"_android:layout_height": "126dp",
+				"_android:layout_x": "52dp",
+				"_android:layout_y": "84dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView9",
+				"_android:layout_width": "131dp",
+				"_android:layout_height": "66dp",
+				"_android:layout_x": "84dp",
+				"_android:layout_y": "44dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView10",
+				"_android:layout_width": "131dp",
+				"_android:layout_height": "41dp",
+				"_android:layout_x": "84dp",
+				"_android:layout_y": "75dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView11",
+				"_android:layout_width": "202dp",
+				"_android:layout_height": "17dp",
+				"_android:layout_x": "48dp",
+				"_android:layout_y": "199dp",
+				"_app:srcCompat": "@drawable/_4"
+			},
+			{
+				"_android:id": "@+id/imageView12",
+				"_android:layout_width": "142dp",
+				"_android:layout_height": "208dp",
+				"_android:layout_x": "79dp",
+				"_android:layout_y": "8dp",
+				"_app:srcCompat": "@drawable/_5"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "80dp",
+				"_android:layout_y": "201dp",
+				"_android:fontFamily": "@font/duke_fill",
+				"_android:text": "Shipping",
+				"_android:textSize": "60sp"
+			},
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "43dp",
+				"_android:layout_x": "106dp",
+				"_android:layout_y": "266dp",
+				"_android:fontFamily": "@font/duke_fill",
+				"_android:letterSpacing": "0.2",
+				"_android:text": "ESTD 1990",
+				"_android:textSize": "20sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

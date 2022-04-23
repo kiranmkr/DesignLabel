@@ -17,6 +17,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         try {
+
             binding = ActivitySplashScreenBinding.inflate(layoutInflater)
             setContentView(binding.root)
 

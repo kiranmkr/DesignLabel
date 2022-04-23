@@ -10,6 +10,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
+import java.util.HashMap
 
 object Utils {
 
@@ -91,4 +92,32 @@ object Utils {
             ex.printStackTrace()
         }
     }
+
+    @JvmStatic
+    var listOfCategory = arrayOf(
+        "candy",
+        "car",
+        "cosmetic",
+        "drinks",
+        "hazard",
+        "kids",
+        "laptop",
+        "ramzan",
+        "shipping",
+    )
+
+    @JvmStatic
+    val categoryMap: HashMap<String, Int> =
+        hashMapOf(
+            "candy" to 10,
+            "car" to 10,
+            "cosmetic" to 10,
+            "drinks" to 10,
+            "hazard" to 10,
+            "kids" to 10,
+            "laptop" to 10,
+            "ramzan" to 10,
+            "shipping" to 10,
+            "shape" to 10
+        )
 }

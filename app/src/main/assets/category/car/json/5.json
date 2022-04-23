@@ -1,0 +1,90 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#C9C6C6"
+			},
+			{
+				"_android:id": "@+id/imageView11",
+				"_android:layout_width": "296dp",
+				"_android:layout_height": "84dp",
+				"_android:layout_x": "1dp",
+				"_android:layout_y": "93dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView12",
+				"_android:layout_width": "251dp",
+				"_android:layout_height": "273dp",
+				"_android:layout_x": "24dp",
+				"_android:layout_y": "13dp",
+				"_app:srcCompat": "@drawable/_2"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView3",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "103dp",
+				"_android:layout_y": "63dp",
+				"_android:fontFamily": "@font/bree_bold",
+				"_android:text": "Since 1990",
+				"_android:textColor": "#313131",
+				"_android:textSize": "20sp"
+			},
+			{
+				"_android:id": "@+id/textView4",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "122dp",
+				"_android:layout_y": "178dp",
+				"_android:fontFamily": "@font/bree_bold",
+				"_android:text": "Classic",
+				"_android:textColor": "#FFFFFF",
+				"_android:textSize": "16sp"
+			},
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "110dp",
+				"_android:layout_y": "197dp",
+				"_android:fontFamily": "@font/bree_bold",
+				"_android:text": "Brand Name",
+				"_android:textColor": "#FFFFFF",
+				"_android:textSize": "14sp"
+			},
+			{
+				"_android:id": "@+id/textView6",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "130dp",
+				"_android:layout_y": "228dp",
+				"_android:fontFamily": "@font/bree_bold",
+				"_android:text": "Service",
+				"_android:textColor": "#FFFFFF",
+				"_android:textSize": "10sp"
+			},
+			{
+				"_android:id": "@+id/textView7",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "130dp",
+				"_android:layout_y": "244dp",
+				"_android:fontFamily": "@font/bree_bold",
+				"_android:text": "Station",
+				"_android:textColor": "#FFFFFF",
+				"_android:textSize": "10sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

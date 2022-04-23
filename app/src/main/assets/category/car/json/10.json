@@ -1,0 +1,68 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:background": "#ECC900"
+			},
+			{
+				"_android:id": "@+id/imageView12",
+				"_android:layout_width": "283dp",
+				"_android:layout_height": "278dp",
+				"_android:layout_x": "8dp",
+				"_android:layout_y": "10dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView13",
+				"_android:layout_width": "139dp",
+				"_android:layout_height": "91dp",
+				"_android:layout_x": "80dp",
+				"_android:layout_y": "104dp",
+				"_app:srcCompat": "@drawable/_2"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView12",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "115dp",
+				"_android:layout_y": "33dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "Car",
+				"_android:textColor": "#313131",
+				"_android:textSize": "34sp"
+			},
+			{
+				"_android:id": "@+id/textView13",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "109dp",
+				"_android:layout_y": "228dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "Station",
+				"_android:textColor": "#313131",
+				"_android:textSize": "20sp"
+			},
+			{
+				"_android:id": "@+id/textView14",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "101dp",
+				"_android:layout_y": "251dp",
+				"_android:fontFamily": "@font/zorque",
+				"_android:text": "ESTD 1990",
+				"_android:textColor": "#313131",
+				"_android:textSize": "20sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

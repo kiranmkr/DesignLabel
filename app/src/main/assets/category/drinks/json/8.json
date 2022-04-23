@@ -1,0 +1,70 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:layout_x": "0dp",
+				"_android:layout_y": "0dp",
+				"_android:background": "#DA987A"
+			},
+			{
+				"_android:id": "@+id/imageView40",
+				"_android:layout_width": "261dp",
+				"_android:layout_height": "233dp",
+				"_android:layout_x": "21dp",
+				"_android:layout_y": "34dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView41",
+				"_android:layout_width": "248dp",
+				"_android:layout_height": "222dp",
+				"_android:layout_x": "25dp",
+				"_android:layout_y": "38dp",
+				"_app:srcCompat": "@drawable/_2"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView18",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "98dp",
+				"_android:layout_y": "57dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "Juice",
+				"_android:textColor": "#E4D9DD",
+				"_android:textSize": "34sp"
+			},
+			{
+				"_android:id": "@+id/textView19",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "58dp",
+				"_android:layout_y": "98dp",
+				"_android:fontFamily": "@font/adventure_script",
+				"_android:text": "Fresh",
+				"_android:textColor": "#E4D9DD",
+				"_android:textSize": "50sp"
+			},
+			{
+				"_android:id": "@+id/textView20",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "98dp",
+				"_android:layout_y": "137dp",
+				"_android:fontFamily": "@font/cooper_black_std_italic",
+				"_android:text": "Berry",
+				"_android:textColor": "#E4D9DD",
+				"_android:textSize": "34sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

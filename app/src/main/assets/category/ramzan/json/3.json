@@ -1,0 +1,83 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView20",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:layout_x": "0dp",
+				"_android:layout_y": "0dp",
+				"_app:srcCompat": "@drawable/_0"
+			},
+			{
+				"_android:id": "@+id/imageView21",
+				"_android:layout_width": "215dp",
+				"_android:layout_height": "215dp",
+				"_android:layout_x": "42dp",
+				"_android:layout_y": "17dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView22",
+				"_android:layout_width": "183dp",
+				"_android:layout_height": "174dp",
+				"_android:layout_x": "62dp",
+				"_android:layout_y": "45dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView23",
+				"_android:layout_width": "190dp",
+				"_android:layout_height": "190dp",
+				"_android:layout_x": "52dp",
+				"_android:layout_y": "30dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView24",
+				"_android:layout_width": "93dp",
+				"_android:layout_height": "169dp",
+				"_android:layout_x": "103dp",
+				"_android:layout_y": "47dp",
+				"_app:srcCompat": "@drawable/_4"
+			},
+			{
+				"_android:id": "@+id/imageView26",
+				"_android:layout_width": "192dp",
+				"_android:layout_height": "181dp",
+				"_android:layout_x": "55dp",
+				"_android:layout_y": "32dp",
+				"_app:srcCompat": "@drawable/_5"
+			}
+		],
+		"TextView": [
+			{
+				"_android:id": "@+id/textView5",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "87dp",
+				"_android:layout_y": "220dp",
+				"_android:fontFamily": "@font/asiyah_script",
+				"_android:text": "Ramadan",
+				"_android:textColor": "#343C45",
+				"_android:textSize": "50sp"
+			},
+			{
+				"_android:id": "@+id/textView6",
+				"_android:layout_width": "wrap_content",
+				"_android:layout_height": "wrap_content",
+				"_android:layout_x": "131dp",
+				"_android:layout_y": "258dp",
+				"_android:fontFamily": "@font/asiyah_script",
+				"_android:text": "Mubarak",
+				"_android:textColor": "#343C45",
+				"_android:textSize": "40sp"
+			}
+		],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

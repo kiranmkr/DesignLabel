@@ -1,0 +1,62 @@
+{
+	"AbsoluteLayout": {
+		"ImageView": [
+			{
+				"_android:id": "@+id/imageView",
+				"_android:layout_width": "300dp",
+				"_android:layout_height": "300dp",
+				"_android:layout_x": "0dp",
+				"_android:layout_y": "0dp",
+				"_android:background": "#FBD4CB"
+			},
+			{
+				"_android:id": "@+id/imageView13",
+				"_android:layout_width": "172dp",
+				"_android:layout_height": "165dp",
+				"_android:layout_x": "56dp",
+				"_android:layout_y": "62dp",
+				"_app:srcCompat": "@drawable/_1"
+			},
+			{
+				"_android:id": "@+id/imageView14",
+				"_android:layout_width": "159dp",
+				"_android:layout_height": "157dp",
+				"_android:layout_x": "62dp",
+				"_android:layout_y": "62dp",
+				"_app:srcCompat": "@drawable/_2"
+			},
+			{
+				"_android:id": "@+id/imageView15",
+				"_android:layout_width": "70dp",
+				"_android:layout_height": "68dp",
+				"_android:layout_x": "107dp",
+				"_android:layout_y": "118dp",
+				"_app:srcCompat": "@drawable/_3"
+			},
+			{
+				"_android:id": "@+id/imageView16",
+				"_android:layout_width": "216dp",
+				"_android:layout_height": "200dp",
+				"_android:layout_x": "41dp",
+				"_android:layout_y": "19dp",
+				"_app:srcCompat": "@drawable/_4"
+			}
+		],
+		"TextView": [{
+			"_android:id": "@+id/textView3",
+			"_android:layout_width": "wrap_content",
+			"_android:layout_height": "wrap_content",
+			"_android:layout_x": "58dp",
+			"_android:layout_y": "237dp",
+			"_android:fontFamily": "@font/krinkes_decor",
+			"_android:text": "Babay Shop",
+			"_android:textColor": "#D38E7C",
+			"_android:textSize": "34sp"
+		}],
+		"_xmlns:android": "http://schemas.android.com/apk/res/android",
+		"_xmlns:app": "http://schemas.android.com/apk/res-auto",
+		"_android:layout_width": "300dp",
+		"_android:layout_height": "300dp",
+		"_android:background": "@color/black"
+	}
+}

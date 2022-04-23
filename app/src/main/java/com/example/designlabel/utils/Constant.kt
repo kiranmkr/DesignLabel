@@ -4,6 +4,9 @@ import com.example.designlabel.R
 
 object Constant {
 
+    var categoryName: String = "candy"
+    var labelNumber: Int = 1
+
     @JvmStatic
     val categoryMap: HashMap<String, Int> =
         hashMapOf(
