@@ -38,7 +38,7 @@
                 android:id="@+id/textView299"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/philosopher_bold"
+                android:fontFamily="@font/abril_fatface"
                 android:gravity="center"
                 android:text="@string/import_shape"
                 android:textAlignment="center"

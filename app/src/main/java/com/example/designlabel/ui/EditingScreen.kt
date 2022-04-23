@@ -2,7 +2,6 @@ package com.example.designlabel.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Paint
@@ -12,7 +11,6 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver
-
 import android.widget.RelativeLayout
 import android.widget.SeekBar
 import androidx.annotation.RequiresApi
@@ -20,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -603,7 +600,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     }
 
     private val emptyClickListener = View.OnClickListener {
-        Log.d("myEmptyClick", "Clickc")
+        Log.d("myEmptyClick", "Click")
     }
 
     private fun alphaManagerForAll(activity: Activity, views: ArrayList<Any?>) {
@@ -1328,14 +1325,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
             if (textView.androidFontFamily != null) {
 
-                val resources: Resources = resources
-                val resourceId: Int = resources.getIdentifier(
-                    textView.androidFontFamily.toString().replace("@font/", ""),
-                    "font",
-                    packageName
-                )
-
-                val typeface = ResourcesCompat.getFont(this@EditingScreen, resourceId)
+                val typeface = Typeface.createFromAsset(assets, "font/${textView.androidFontFamily.toString().replace("@font/", "")}.ttf")
                 if (typeface != null) {
                     newTextView?.typeface = typeface
                 }
@@ -1355,7 +1345,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
                 }
 
             }
-
 
             val moveViewTouchListener = MoveViewTouchListener(this, newTextView)
 
@@ -1505,6 +1494,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     }
 
     override fun setFont(fontName: String) {
+        Log.d("myFont",fontName)
         currentText?.let {
             val tf = Typeface.createFromAsset(assets, "font/$fontName")
             it.typeface = tf
