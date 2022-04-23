@@ -44,9 +44,9 @@
             android:name=".ui.SplashScreen"
             android:configChanges="orientation"
             android:exported="true"
-            android:label="@string/title_activity_splash_screen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DesignLabel">
+            android:theme="@style/Theme.DesignLabel"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
