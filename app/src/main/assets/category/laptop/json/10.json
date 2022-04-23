@@ -43,8 +43,8 @@
 			},
 			{
 				"_android:id": "@+id/imageView53",
-				"_android:layout_width": "wrap_content",
-				"_android:layout_height": "wrap_content",
+				"_android:layout_width": "233dp",
+				"_android:layout_height": "8dp",
 				"_android:layout_x": "34dp",
 				"_android:layout_y": "144dp",
 				"_app:srcCompat": "@drawable/_5"
@@ -56,6 +56,14 @@
 				"_android:layout_x": "74dp",
 				"_android:layout_y": "65dp",
 				"_app:srcCompat": "@drawable/_6"
+			},
+			{
+				"_android:id": "@+id/imageView48",
+				"_android:layout_width": "232dp",
+				"_android:layout_height": "119dp",
+				"_android:layout_x": "33dp",
+				"_android:layout_y": "147dp",
+				"_app:srcCompat": "@drawable/_7"
 			},
 			{
 				"_android:id": "@+id/imageView50",

@@ -10,6 +10,7 @@ import com.example.designlabel.adapter.TrendingAdapter
 import com.example.designlabel.databinding.ActivityMainBinding
 import com.example.designlabel.interfacecallback.TemplateClickCallBack
 import com.example.designlabel.pageradapter.ViewPagerAdapter
+import com.example.designlabel.utils.Constant
 import com.example.designlabel.utils.Utils
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(), TemplateClickCallBack {
         binding.viewPager.adapter = createCardAdapter()
         TabLayoutMediator(
             binding.tabs, binding.viewPager
-        ) { tab, position -> tab.text = "Tab " + (position + 1) }.attach()
+        ) { tab, position -> tab.text = Constant.listOfCategory[position] }.attach()
     }
 
     override fun onItemClickListener(labelNumber: String, categoryName: String) {

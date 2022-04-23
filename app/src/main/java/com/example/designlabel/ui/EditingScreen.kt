@@ -60,9 +60,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     private val workerThread: ExecutorService = Executors.newCachedThreadPool()
     private val workerHandler = Handler(Looper.getMainLooper())
 
-    private var categoryName: String = Constant.categoryName
-    private var labelNumber: Int = Constant.labelNumber
-
     private var imageViewArray: ArrayList<ImageView> = ArrayList()
     private var textViewJson: ArrayList<TextView> = ArrayList()
     private var svgLayerPathList: ArrayList<String> = ArrayList()
@@ -268,6 +265,8 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
         svgColor = findViewById(R.id.svgColor)
         svgColor?.setHasFixedSize(true)
 
+        Log.d("myTemplate", "${Constant.categoryName} -- ${Constant.labelNumber}")
+
         val viewTreeObserver = rootLayout?.viewTreeObserver
         viewTreeObserver?.addOnGlobalLayoutListener(object :
             ViewTreeObserver.OnGlobalLayoutListener {
@@ -304,8 +303,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
                         }
                     }
 
-                    Log.d("myFactor", "$screenRatioFactor")
-
                     if (imageViewArray.size > 0) {
                         addImage(imageViewArray)
                     }
@@ -315,7 +312,8 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
                     }
 
                 } else {
-                    Log.d("myError", "wrong json")
+
+                    Log.e("myError", "wrong json")
                 }
 
             }
@@ -357,11 +355,11 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
                 currentText!!.setBackgroundColor(Color.TRANSPARENT)
             }
 
-            if (stickerRoot?.visibility == View.VISIBLE){
+            if (stickerRoot?.visibility == View.VISIBLE) {
                 stickerRoot?.visibility = View.GONE
             }
 
-            if (newCustomSticker != null){
+            if (newCustomSticker != null) {
                 newCustomSticker?.disableAllOthers()
             }
 
@@ -1152,7 +1150,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
                 try {
                     path =
-                        "file:///android_asset/category/$categoryName/assets/$labelNumber/$index.png"
+                        "file:///android_asset/category/${Constant.categoryName}/assets/${Constant.labelNumber}/$index.png"
                 } catch (ex: IOException) {
                     ex.printStackTrace()
                 }
@@ -1171,7 +1169,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
                 try {
                     path =
-                        "file:///android_asset/category/$categoryName/assets/$labelNumber/0.png"
+                        "file:///android_asset/category/${Constant.categoryName}/assets/${Constant.labelNumber}/0.png"
                 } catch (ex: IOException) {
                     ex.printStackTrace()
                 }
@@ -1372,7 +1370,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
         val json: String? = try {
             val `is`: InputStream =
-                this.assets.open("category/$categoryName/json/$labelNumber.json")
+                this.assets.open("category/${Constant.categoryName}/json/${Constant.labelNumber}.json")
             val size = `is`.available()
             val buffer = ByteArray(size)
             `is`.read(buffer)

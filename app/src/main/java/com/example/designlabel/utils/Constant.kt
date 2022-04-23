@@ -1,26 +1,41 @@
 package com.example.designlabel.utils
 
 import com.example.designlabel.R
+import java.util.HashMap
 
 object Constant {
 
     var categoryName: String = "candy"
     var labelNumber: Int = 1
 
+    var categoryPosition: Int = 0
+
+    @JvmStatic
+    var listOfCategory = arrayOf(
+        "candy",
+        "car",
+        "cosmetic",
+        "drinks",
+        "hazard",
+        "kids",
+        "laptop",
+        "ramzan",
+        "shipment",
+    )
+
     @JvmStatic
     val categoryMap: HashMap<String, Int> =
         hashMapOf(
-            "Soap" to 10,
-            "New Year" to 10,
-            "Shipping" to 10,
-            "Gaming" to 10,
-            "Cosmetic" to 10,
-            "Baby Shower" to 10,
-            "Candy" to 10,
-            "Cars" to 10,
-            "Holidays" to 10,
-            "Product" to 10,
-            "Laptop" to 10
+            "candy" to 10,
+            "car" to 10,
+            "cosmetic" to 10,
+            "drinks" to 10,
+            "hazard" to 10,
+            "kids" to 10,
+            "laptop" to 10,
+            "ramzan" to 10,
+            "shipment" to 10,
+            "shape" to 10
         )
 
 

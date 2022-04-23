@@ -13,7 +13,7 @@ class ViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragme
     }
 
     override fun getItemCount(): Int {
-        return Constant.categoryMap.size
+        return Constant.listOfCategory.size
     }
 
     companion object {

@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.designlabel.R
 import com.example.designlabel.interfacecallback.TemplateClickCallBack
 import com.example.designlabel.utils.Constant
-import com.example.designlabel.utils.Utils
 import com.example.designlabel.utils.loadThumbnail
 
 class TrendingAdapter(var categoryName: String, val callBack: TemplateClickCallBack) :
     RecyclerView.Adapter<TrendingAdapter.ViewHolder>() {
 
     private var context: Context? = null
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -40,9 +38,8 @@ class TrendingAdapter(var categoryName: String, val callBack: TemplateClickCallB
     }
 
     override fun getItemCount(): Int {
-        return Utils.categoryMap[categoryName]!!.toInt()
+        return Constant.categoryMap[categoryName]!!.toInt()
     }
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
