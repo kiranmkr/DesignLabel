@@ -50,6 +50,9 @@
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet);
 }
+-keep class kotlin.Metadata { *; }
+-keep class kotlin.reflect.** { *; }
+-keep class com.example.designlabel.datamodel.** { *; }
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet, int);
 }
