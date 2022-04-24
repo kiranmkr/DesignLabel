@@ -205,6 +205,9 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     var onPermissionPermanentlyDeniedListener: OnPermissionPermanentlyDeniedListener = this
     var onPermissionGrantedListener: OnPermissionGrantedListener = this
 
+    private var cameraBtn: android.widget.ImageView? = null
+    private var galleryBtn: android.widget.ImageView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editing_screen)
@@ -314,6 +317,9 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
         svgColor = findViewById(R.id.svgColor)
         svgColor?.setHasFixedSize(true)
+
+        cameraBtn = findViewById(R.id.imageView17)
+        galleryBtn = findViewById(R.id.imageView16)
 
         Log.d("myTemplate", "${Constant.categoryName} -- ${Constant.labelNumber}")
 
@@ -674,6 +680,7 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
         updateSVGColorAdapter()
 
         stickerRoot?.setOnClickListener(emptyClickListener)
+        svgLayersContainer?.setOnClickListener(emptyClickListener)
 
         stickerDelete?.setOnClickListener {
             newCustomSticker?.deleteObject()
@@ -693,6 +700,37 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
             importImageSticker()
         }
 
+        cameraBtn?.setOnClickListener {
+            Dexter.withContext(this@EditingScreen)
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                        pickCameraImage()
+                    }
+
+                    override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                        Utils.showToast(this@EditingScreen, "Perssmion is Denied")
+                    }
+
+                    override fun onPermissionRationaleShouldBeShown(
+                        permission: PermissionRequest?,
+                        token: PermissionToken?
+                    ) {
+                        token?.continuePermissionRequest()
+                    }
+                }).check()
+        }
+
+        galleryBtn?.setOnClickListener {
+            importImageSticker()
+        }
+
+    }
+
+    @Suppress("DEPRECATION")
+    fun pickCameraImage() {
+        val pictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(pictureIntent, Constant.REQUEST_CAPTURE_IMAGE)
     }
 
     private fun importImageSticker() {

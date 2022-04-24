@@ -9,7 +9,7 @@ object Constant {
     const val REQUEST_GELLERY_IMAGE = 20202
 
     @JvmStatic
-    val fileProvider: String = "com.example.designlabel.fileprovider"
+    val fileProvider: String = "com.label.design.maker.creator.fileprovider"
 
     var categoryName: String = "candy"
     var labelNumber: Int = 1

@@ -5,11 +5,26 @@ plugins {
 
 android {
 
+    signingConfigs {
+        config {
+            storeFile file('E:\\otherApp\\DesignLabel\\app\\labelmaker.jks')
+            keyAlias 'upload'
+            keyPassword 'labelmaker123'
+            storePassword 'labelmaker123'
+        }
+        debug {
+            storeFile file('E:\\otherApp\\DesignLabel\\app\\labelmaker.jks')
+            keyAlias = 'upload'
+            keyPassword 'labelmaker123'
+            storePassword 'labelmaker123'
+        }
+    }
+
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.designlabel"
+        applicationId "com.label.design.maker.creator"
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 31
@@ -23,10 +38,19 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11.toString()
         targetCompatibility JavaVersion.VERSION_11.toString()
