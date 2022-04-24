@@ -27,7 +27,7 @@ class ShapeAdapter(callBack: StickerClick) : RecyclerView.Adapter<ShapeAdapter.V
 
     override fun onBindViewHolder(holder: ShapeAdapter.ViewHolder, position: Int) {
 
-        val path = "file:///android_asset/category/shape/${position + 1}.webp"
+        val path = "file:///android_asset/category/shape/${position + 1}.png"
 
         Log.d("myShapePath", path)
 
@@ -40,11 +40,9 @@ class ShapeAdapter(callBack: StickerClick) : RecyclerView.Adapter<ShapeAdapter.V
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var thumbNail: ImageView
+        var thumbNail: ImageView = itemView.findViewById(R.id.imageView52)
 
         init {
-
-            thumbNail = itemView.findViewById(R.id.imageView52)
 
             itemView.setOnClickListener {
                 itemCallBAck.setOnStickerClickListener(adapterPosition + 1, true)

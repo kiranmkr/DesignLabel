@@ -36,16 +36,14 @@ class StickerAdapter(callBack: StickerClick) :
     }
 
     override fun getItemCount(): Int {
-        return 99
+        return 24
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var thumbNail: ImageView
+        var thumbNail: ImageView = itemView.findViewById(R.id.imageView52)
 
         init {
-
-            thumbNail = itemView.findViewById(R.id.imageView52)
 
             itemView.setOnClickListener {
                 itemCallBAck.setOnStickerClickListener(adapterPosition+1, false)

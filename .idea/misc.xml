@@ -7,6 +7,8 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/ic_clear.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/image_placeholder.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/my_border.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/prnt_btn_bg.xml" value="0.126" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/rate.xml" value="0.126" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable-v24/shape_black_border.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/arrow_down.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/boarder_state.xml" value="0.3185" />
@@ -18,12 +20,20 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/color_icon.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/container_delete.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/container_flip.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/cross_icon.xml" value="0.126" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/default_boarder.xml" value="0.3185" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/gray_boarder.xml" value="0.3185" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/home_run.xml" value="0.1145" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/ic_profile_user.xml" value="0.16" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/ic_round_image_24.xml" value="0.1145" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/ic_round_screen_share_24.xml" value="0.1145" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/icon_boarder.xml" value="0.16" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/images.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/italic_state.xml" value="0.123" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/pdf_bg.xml" value="0.1145" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/pdf_file.xml" value="0.1145" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/prnt_btn_bg.xml" value="0.126" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/rate.xml" value="0.126" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_bg.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_bold_off.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/round_camera.xml" value="0.123" />
@@ -38,10 +48,11 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/text_style.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/drawable/underline_state.xml" value="0.123" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/font/abril_fatface.xml" value="0.23333333333333334" />
-        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_editing_screen.xml" value="0.4" />
-        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_splash_screen.xml" value="0.2046875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_editing_screen.xml" value="0.2046875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/activity_splash_screen.xml" value="0.264" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/add_text_dialog.xml" value="0.2046875" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/final_label_dialog.xml" value="0.16018518518518518" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/font_container_text.xml" value="0.4" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/image_container_svg.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/layer_item.xml" value="0.3171875" />
@@ -50,6 +61,9 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_container_text.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/opacity_layout_sticker.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/re_font_view.xml" value="0.10648148148148148" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/save_pdf_dialog.xml" value="0.176" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/sheet_dialog.xml" value="0.264" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/sheet_prtint_dialog.xml" value="0.125" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/size_container_text.xml" value="0.10648148148148148" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/sticker_container_svg.xml" value="0.176" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/style_container_text.xml" value="0.264" />
@@ -60,6 +74,8 @@
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/template_trending_cat_item.xml" value="0.2046875" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/text_container.xml" value="0.2" />
         <entry key="..\:/otherApp/DesignLabel/app/src/main/res/layout/text_menu.xml" value="0.176" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1145" />
+        <entry key="..\:/otherApp/DesignLabel/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.169" />
       </map>
     </option>
   </component>

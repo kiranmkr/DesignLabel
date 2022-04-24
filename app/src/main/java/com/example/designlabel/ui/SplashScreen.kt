@@ -23,7 +23,6 @@ class SplashScreen : AppCompatActivity() {
 
             val myAnim = AnimationUtils.loadAnimation(this@SplashScreen, R.anim.zoom_splash)
             binding.imageView.startAnimation(myAnim)
-            binding.imageView2.startAnimation(myAnim)
             myAnim.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation) {
                     Log.e("myAnimation", "start")

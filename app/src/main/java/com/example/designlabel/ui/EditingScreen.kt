@@ -1,23 +1,38 @@
 package com.example.designlabel.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Typeface
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.ActivityNotFoundException
+import android.content.ContentValues
+import android.content.Intent
+import android.database.Cursor
+import android.graphics.*
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.*
+import android.provider.MediaStore
+import android.provider.Settings
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
-import android.view.View
-import android.view.ViewTreeObserver
+import android.view.*
+import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.SeekBar
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.drawToBitmap
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -28,21 +43,35 @@ import com.example.designlabel.customCallBack.AddNewTextCallBack
 import com.example.designlabel.customCallBack.FontAdapterCallBack
 import com.example.designlabel.customCallBack.StickerClick
 import com.example.designlabel.customDialog.AddNewText
+import com.example.designlabel.customDialog.SheetDialog
+import com.example.designlabel.customDialog.SheetPrintDialog
 import com.example.designlabel.customDialog.UpdateNewText
 import com.example.designlabel.customSticker.CustomImageView
 import com.example.designlabel.datamodel.ImageView
 import com.example.designlabel.datamodel.Root
 import com.example.designlabel.datamodel.TextView
 import com.example.designlabel.other.MoveViewTouchListener
+import com.example.designlabel.permissionWorking.OnActivityResultListener
+import com.example.designlabel.permissionWorking.OnPermissionDeniedListener
+import com.example.designlabel.permissionWorking.OnPermissionGrantedListener
+import com.example.designlabel.permissionWorking.OnPermissionPermanentlyDeniedListener
 import com.example.designlabel.utils.Constant
 import com.example.designlabel.utils.Utils
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import org.json.JSONObject
-import java.io.IOException
-import java.io.InputStream
+import java.io.*
 import java.nio.charset.StandardCharsets
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -52,7 +81,9 @@ import kotlin.math.roundToInt
 
 class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     MoveViewTouchListener.EditTextCallBacks, FontAdapterCallBack, AddNewTextCallBack, StickerClick,
-    CustomImageView.CustomImageCallBack, SVGColorAdapter.SvgColorClick {
+    CustomImageView.CustomImageCallBack, SVGColorAdapter.SvgColorClick,
+    SheetPrintDialog.SheetPrintDialogCallBack, OnActivityResultListener,
+    OnPermissionDeniedListener, OnPermissionPermanentlyDeniedListener, OnPermissionGrantedListener {
 
     private val workerThread: ExecutorService = Executors.newCachedThreadPool()
     private val workerHandler = Handler(Looper.getMainLooper())
@@ -147,7 +178,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     private var textOpacityContainer: View? = null
     private var textStyleContainer: View? = null
 
-    private var importSticker: ConstraintLayout? = null
     private var reShape: RecyclerView? = null
     private var reSticker: RecyclerView? = null
     private var shapeAdapter: ShapeAdapter? = null
@@ -161,6 +191,20 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     private var stickerCheckmark: android.widget.ImageView? = null
     private var stickerOpacitySeekBar: SeekBar? = null
 
+    private var toolBack: ConstraintLayout? = null
+    private var toolSave: ConstraintLayout? = null
+
+    private var exportDialog: SheetPrintDialog? = null
+    var sheetDialog: SheetDialog? = null
+
+    var fileUri: Uri? = null
+    private var importSticker: ConstraintLayout? = null
+
+    var onActivityResultListener: OnActivityResultListener = this
+    var onPermissionDeniedListener: OnPermissionDeniedListener = this
+    var onPermissionPermanentlyDeniedListener: OnPermissionPermanentlyDeniedListener = this
+    var onPermissionGrantedListener: OnPermissionGrantedListener = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editing_screen)
@@ -169,9 +213,18 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
             initID()
         }
 
+        exportDialog = SheetPrintDialog(this@EditingScreen, this)
+        sheetDialog = SheetDialog(this@EditingScreen)
+        sheetDialog?.setDialog()
+
     }
 
+
+
     private fun initID() {
+
+        toolBack = findViewById(R.id.toolBack)
+        toolSave = findViewById(R.id.toolSave)
 
         rootLayout = findViewById(R.id.root_layout)
         imageViewSVG = findViewById(R.id.imageView52)
@@ -320,6 +373,29 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
     }
 
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        showBackDialog()
+    }
+
+    fun finishEditing() {
+        finish()
+    }
+
+    private fun showBackDialog() {
+
+        AlertDialog.Builder(this@EditingScreen)
+            .setMessage("Are you sure you want to exit Editing Screen?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { _, _ ->
+                Utils.clearGarbageCollection()
+                finish()
+            }
+            .setNegativeButton("No", null)
+            .show()
+
+    }
+
     private fun updateSVGColorAdapter() {
         svgColorAdapter = SVGColorAdapter(this)
         svgColor?.adapter = svgColorAdapter
@@ -337,6 +413,23 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     }
 
     private fun clickHandler() {
+
+        toolBack?.setOnClickListener {
+            showBackDialog()
+        }
+
+        toolSave?.setOnClickListener {
+
+            if (newCustomSticker != null) {
+                newCustomSticker?.disableAllOthers()
+            }
+
+            if (currentText != null) {
+                currentText!!.setBackgroundColor(Color.TRANSPARENT)
+            }
+
+            exportDialog?.show()
+        }
 
         rootLayout?.setOnClickListener {
 
@@ -467,7 +560,6 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
             e.printStackTrace()
         }
 
-
         //SeekAlpha Code
         tvSeekAlpha?.max = 10
         tvSeekAlpha?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -597,6 +689,82 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
             newCustomSticker?.flipRoot()
         }
 
+        importSticker?.setOnClickListener {
+            importImageSticker()
+        }
+
+    }
+
+    private fun importImageSticker() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            pickGalleryImageNewApi()
+        } else {
+            pickGalleryImage()
+        }
+    }
+
+    private fun pickGalleryImageNewApi() {
+        checkPermissions()
+    }
+
+    //This permission Check only Android Q and Above
+    @SuppressLint("InlinedApi")
+    fun checkPermissions() {
+        requestMultiplePermissions.launch(
+            arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_MEDIA_LOCATION,
+            )
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    val requestMultiplePermissions =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            var isDenied = 2
+            permissions.entries.forEach {
+                if (it.value == false) {
+                    val showRationale1: Boolean = shouldShowRequestPermissionRationale(it.key)
+                    isDenied = if (!showRationale1) {
+                        0
+                    } else {
+                        1
+                    }
+                }
+                Log.e("DEBUG", "${it.key} = ${it.value}")
+            }
+
+
+            //ShowPrompt(context,permissions);
+            when (isDenied) {
+                1 -> onPermissionDeniedListener.onPermissionDenied()
+                0 -> onPermissionPermanentlyDeniedListener.onPermissionPermanentlyDenied()
+                else -> onPermissionGrantedListener.onPermissionGranted()
+            }
+
+        }
+
+    @Suppress("DEPRECATION")
+    fun pickGalleryImage() {
+        try {
+            val intent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            if (intent.resolveActivity(packageManager) != null) {
+                this.startActivityForResult(intent, Constant.REQUEST_GELLERY_IMAGE)
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            this.startActivityForResult(
+                Intent.createChooser(intent, "Select Picture"),
+                Constant.REQUEST_GELLERY_IMAGE
+            )
+        }
     }
 
     private val emptyClickListener = View.OnClickListener {
@@ -1583,7 +1751,8 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
 
         if (isShapeOrNot) {
 
-            val path = "category/shape/${position}.webp"
+            val path = "category/shape/${position}.png"
+
             Log.d("myStickerIs", path)
 
             val newBit: Bitmap? = Utils.getBitmapFromAsset(this, path)
@@ -1654,11 +1823,1086 @@ class EditingScreen : AppCompatActivity(), SVGLayersAdapter.SvgLayersClick,
     }
 
     override fun setOnColorClickListener(position: Int) {
-
         if (currentText != null) {
             currentText!!.setTextColor(ContextCompat.getColor(this, Constant.colorArray[position]))
+        }
+    }
+
+    override fun saveSingleLabel() {
+        finalLabelDialog()
+    }
+
+    override fun saveLabelSheet() {
+        saveSheetSizeDialog()
+    }
+
+    override fun sheetPrintDialogClose() {
+
+    }
+
+    private fun finalLabelDialog() {
+        val saveImg: android.widget.ImageView
+        val shareImage: android.widget.ImageView
+        val backImage: android.widget.ImageView
+        val finalLabel: android.widget.ImageView
+        val savePDF: android.widget.ImageView
+        val homeBtn: android.widget.ImageView
+        val customDialog = Dialog(this, R.style.full_screen_dialog2)
+        val view = View.inflate(this, R.layout.final_label_dialog, null)
+        Objects.requireNonNull(customDialog.window)
+            ?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        customDialog.window!!.statusBarColor =
+            ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
+        customDialog.setContentView(view)
+        customDialog.show()
+        finalLabel = view.findViewById(R.id.final_label)
+        saveImg = view.findViewById(R.id.gallery_iv)
+        savePDF = view.findViewById(R.id.imageView11)
+        shareImage = view.findViewById(R.id.imageView43)
+        backImage = view.findViewById(R.id.back_btn)
+        homeBtn = view.findViewById(R.id.home_btn)
+
+        rootLayout?.let {
+
+            Glide.with(this)
+                .load(it.drawToBitmap(Bitmap.Config.ARGB_8888))
+                .centerInside()
+                .into(finalLabel)
+        }
+
+        saveImg.setOnClickListener {
+
+            rootLayout?.let {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                    Dexter.withContext(this@EditingScreen)
+                        .withPermissions(
+                            Manifest.permission.ACCESS_MEDIA_LOCATION,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        .withListener(object : MultiplePermissionsListener {
+                            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                                if (report.areAllPermissionsGranted()) {
+                                    workerThread.execute {
+
+                                        val saveFilePath: String? = saveMediaToStorage(
+                                            it.drawToBitmap(Bitmap.Config.ARGB_8888)
+                                        )
+
+                                        if (saveFilePath != null && File(saveFilePath).exists()) {
+
+                                            workerHandler.post {
+                                                Utils.showToast(this@EditingScreen, "$saveFilePath")
+                                                Log.e("myFileFos", "Saved file and not null")
+                                            }
+
+                                        } else {
+                                            workerHandler.post {
+                                                Utils.showToast(
+                                                    this@EditingScreen,
+                                                    resources.getString(R.string.something_went_wrong)
+                                                )
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            override fun onPermissionRationaleShouldBeShown(
+                                list: List<PermissionRequest>,
+                                permissionToken: PermissionToken
+                            ) {
+                                permissionToken.continuePermissionRequest()
+                            }
+                        }).check()
+
+                } else {
+
+                    Dexter.withContext(this@EditingScreen)
+                        .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(object : PermissionListener {
+                            override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+
+                                workerThread.execute {
+
+                                    val saveFilePath: String? =
+                                        saveMediaToStorage(
+                                            it.drawToBitmap(Bitmap.Config.ARGB_8888)
+                                        )
+
+                                    if (saveFilePath != null && File(saveFilePath).exists()) {
+
+                                        workerHandler.post {
+                                            Utils.showToast(this@EditingScreen, "$saveFilePath")
+                                            Log.e("myFileFos", "Saved file and not null")
+                                        }
+
+                                    } else {
+                                        workerHandler.post {
+                                            Utils.showToast(
+                                                this@EditingScreen,
+                                                resources.getString(R.string.something_went_wrong)
+                                            )
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                                Utils.showToast(this@EditingScreen, "Perssmion is Denied")
+                            }
+
+                            override fun onPermissionRationaleShouldBeShown(
+                                permission: PermissionRequest?,
+                                token: PermissionToken?
+                            ) {
+                                token?.continuePermissionRequest()
+                            }
+                        }).check()
+
+                }
+
+            }
+
+        }
+
+        savePDF.setOnClickListener {
+
+            rootLayout?.let {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                    Dexter.withContext(this@EditingScreen)
+                        .withPermissions(
+                            Manifest.permission.ACCESS_MEDIA_LOCATION,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        .withListener(object : MultiplePermissionsListener {
+                            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                                if (report.areAllPermissionsGranted()) {
+                                    workerThread.execute {
+
+                                        val filePath = savePdfFileToScopeStorage(it)
+
+                                        if (filePath != null && File(filePath).exists()) {
+
+                                            workerHandler.post {
+                                                Utils.showToast(this@EditingScreen, "$filePath")
+                                                Log.e("myFileFos", "Saved file and not null")
+                                            }
+
+                                        } else {
+                                            workerHandler.post {
+                                                Utils.showToast(
+                                                    this@EditingScreen,
+                                                    resources.getString(R.string.something_went_wrong)
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            override fun onPermissionRationaleShouldBeShown(
+                                list: List<PermissionRequest>,
+                                permissionToken: PermissionToken
+                            ) {
+                                permissionToken.continuePermissionRequest()
+                            }
+                        }).check()
+
+
+                } else {
+
+                    Dexter.withContext(this@EditingScreen)
+                        .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(object : PermissionListener {
+                            override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+
+                                workerThread.execute {
+
+                                    val filePath = savePdfFileToScopeStorage(it)
+
+                                    if (filePath != null && File(filePath).exists()) {
+
+                                        workerHandler.post {
+                                            Utils.showToast(this@EditingScreen, "$filePath")
+                                            Log.e("myFileFos", "Saved file and not null")
+                                        }
+
+                                    } else {
+                                        workerHandler.post {
+                                            Utils.showToast(
+                                                this@EditingScreen,
+                                                resources.getString(R.string.something_went_wrong)
+                                            )
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                                Utils.showToast(this@EditingScreen, "Perssmion is Denied")
+                            }
+
+                            override fun onPermissionRationaleShouldBeShown(
+                                permission: PermissionRequest?,
+                                token: PermissionToken?
+                            ) {
+                                token?.continuePermissionRequest()
+                            }
+                        }).check()
+
+                }
+
+            }
+
+        }
+
+        shareImage.setOnClickListener {
+            shareSinglePdfFile()
+        }
+
+        backImage.setOnClickListener { customDialog.dismiss() }
+
+        homeBtn.setOnClickListener {
+            finish()
         }
 
     }
 
+    var sta = true
+
+    private fun saveSheetSizeDialog() {
+
+        val height: EditText
+        val width: EditText
+        val printBtn: android.widget.TextView
+        val reset: android.widget.TextView
+        val closeDialog: android.widget.ImageView
+        val ratioVal = 1.0f
+        val view = View.inflate(this, R.layout.save_pdf_dialog, null)
+        val dialog = Dialog(this@EditingScreen)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
+        dialog.setContentView(view)
+        dialog.show()
+        height = view.findViewById(R.id.height)
+        width = view.findViewById(R.id.width)
+        printBtn = view.findViewById(R.id.print_btn)
+        reset = view.findViewById(R.id.textView262)
+        closeDialog = view.findViewById(R.id.imageView39)
+
+        width.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                sta = true
+                Log.e("calling", "${v.id}")
+            }
+            false
+        }
+
+        height.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                sta = false
+                Log.e("calling", "${v.id}")
+            }
+            false
+        }
+
+        closeDialog.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        width.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                //Log.e("calling", "beforeTextChanged");
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                //Log.e("calling", "onTextChanged");
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                //Log.e("calling", "afterTextChanged");
+                if (sta) {
+
+                    if (width.text.toString().trim { it <= ' ' } != "") {
+
+                        if (width.text.toString().trim { it <= ' ' } == ".") {
+
+                            val w = ("0" + width.text.toString().trim { it <= ' ' }).toFloat()
+
+                            if (w in 0.1f..8.0f) {
+                                sta = true
+                                if (w / ratioVal <= 11.0f) {
+                                    height.setText((w / ratioVal).toString())
+                                } else {
+                                    height.setText("")
+                                }
+                                height.setBackgroundColor(Color.parseColor("#D3D3D3"))
+                                height.isEnabled = false
+
+                                //quantity.setText(String.valueOf(calculateSheetSize(Float.valueOf(width.getText().toString().trim()), Float.valueOf(height.getText().toString().trim()))));
+                            } else {
+                                Log.e("calling", "No Change")
+                                height.setText("")
+                                //quantity.setText("");
+                            }
+
+                        } else {
+                            val w = ("0" + width.text.toString().trim { it <= ' ' }).toFloat()
+                            if (w in 0.1f..8.0f) {
+                                sta = true
+                                if (w / ratioVal <= 11.0f) {
+                                    height.setText((w / ratioVal).toString())
+                                } else {
+                                    height.setText("")
+                                }
+                                height.setBackgroundColor(Color.parseColor("#D3D3D3"))
+                                height.isEnabled = false
+
+                                //quantity.setText(String.valueOf(calculateSheetSize(Float.valueOf(width.getText().toString().trim()), Float.valueOf(height.getText().toString().trim()))));
+                            } else {
+                                Log.e("calling", "No Change")
+                                height.setText("")
+                                //quantity.setText("");
+                            }
+                        }
+                    } else {
+                        height.setText("")
+                        //height.setFocusable(true);
+                        //quantity.setText("");
+                    }
+                }
+            }
+        })
+
+        height.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                //Log.e("calling", "beforeTextChanged");
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                //Log.e("calling", "onTextChanged");
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                //Log.e("calling", "afterTextChanged");
+                if (!sta) {
+
+                    if (height.text.toString() != "") {
+
+                        if (height.text.toString().trim { it <= ' ' } == ".") {
+
+                            val h = ("0" + height.text.toString().trim { it <= ' ' }).toFloat()
+
+                            if (h in 0.1f..11f) {
+
+                                sta = false
+
+                                if (ratioVal * h <= 8.0f) {
+                                    width.setText((ratioVal * h).toString())
+                                } else {
+                                    width.setText("")
+                                }
+                                width.isEnabled = false
+                                width.setBackgroundColor(Color.parseColor("#D3D3D3"))
+
+                                //quantity.setText(String.valueOf(calculateSheetSize(Float.valueOf(width.getText().toString().trim()), h)));
+                            } else {
+                                Log.e("calling", "No Change")
+                                width.setText("")
+                                //quantity.setText("");
+                            }
+                        } else {
+                            val h = height.text.toString().trim { it <= ' ' }.toFloat()
+                            if (h in 0.1f..11f) {
+                                sta = false
+                                if (ratioVal * h <= 8.0f) {
+                                    width.setText((ratioVal * h).toString())
+                                } else {
+                                    width.setText("")
+                                }
+                                width.isEnabled = false
+                                width.setBackgroundColor(Color.parseColor("#D3D3D3"))
+
+                                //quantity.setText(String.valueOf(calculateSheetSize(Float.valueOf(width.getText().toString().trim()), h)));
+                            } else {
+                                Log.e("calling", "No Change")
+                                width.setText("")
+                                //quantity.setText("");
+                            }
+                        }
+                    } else {
+                        width.setText("")
+                        //width.setFocusable(true);
+                        //quantity.setText("");
+                    }
+                }
+            }
+        })
+
+        printBtn.setOnClickListener { v ->
+
+            if (height.text.toString().trim { it <= ' ' } != "" && width.text.toString()
+                    .trim { it <= ' ' } != ""
+                && height.text.toString().trim { it <= ' ' }
+                    .toFloat() <= 11f && width.text.toString().trim { it <= ' ' }
+                    .toFloat() <= 8.0f) {
+
+                dialog.dismiss()
+
+                Utils.hideKeyboardFromView(v)
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    rootLayout?.let {
+                        sheetDialog?.showDialog(
+                            width.text.toString().trim { it <= ' ' } + "x" + height.text.toString()
+                                .trim { it <= ' ' },
+                            rootLayout!!.drawToBitmap(Bitmap.Config.ARGB_8888)
+                        )
+                    }
+
+                }, 500)
+
+            } else {
+                Utils.showToast(this@EditingScreen, "Please enter right label Size")
+            }
+        }
+
+        reset.setOnClickListener { v ->
+            sta = true
+            width.isEnabled = true
+            width.background = ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.pdf_bg,
+                null
+            )
+            width.setText("")
+            height.isEnabled = true
+            height.background = ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.pdf_bg,
+                null
+            )
+            height.setText("")
+
+            Utils.hideKeyboardFromView(v)
+        }
+
+    }
+
+    //*********************************Method for shear pdf***************************************//
+    private fun shareSinglePdfFile() {
+
+        if (currentText != null) {
+            currentText!!.setBackgroundColor(Color.TRANSPARENT)
+        }
+
+        //File Name as a current time Name
+        val mFileName = SimpleDateFormat(
+            "yyyyMMdd_HHmmss",
+            Locale.getDefault()
+        ).format(System.currentTimeMillis())
+        val file = externalCacheDir?.absolutePath
+
+        if (file != null) {
+
+            val path = File(file)
+
+            if (!path.exists()) {
+                path.mkdirs()
+            }
+
+            val newFile = File(path, "PDF\n$mFileName.pdf")
+            val document = PdfDocument()
+            val pageInfo =
+                PdfDocument.PageInfo.Builder(rootLayout!!.width, rootLayout!!.height, 1).create()
+            val page = document.startPage(pageInfo)
+            val content: View? = rootLayout
+            content!!.draw(page.canvas)
+            rootLayout!!.draw(page.canvas)
+
+            // finish the page
+            document.finishPage(page)
+            try {
+
+                document.writeTo(FileOutputStream(newFile))
+
+                if (newFile.exists()) {
+
+                    fileUri = if (Build.VERSION.SDK_INT >= 24) {
+                        FileProvider.getUriForFile(
+                            this@EditingScreen,
+                            Constant.fileProvider,
+                            newFile
+                        )
+                    } else {
+                        Uri.fromFile(newFile)
+                    }
+                    val intentShareFile = Intent(Intent.ACTION_SEND)
+                    intentShareFile.type = "application/pdf"
+                    intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri)
+                    startActivity(
+                        Intent.createChooser(
+                            intentShareFile,
+                            resources.getString(R.string.share_file)
+                        )
+                    )
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            document.close()
+        } else {
+            Utils.showToast(
+                this,
+                resources.getString(R.string.something_went_wrong)
+            )
+        }
+
+    }
+
+    @Suppress("DEPRECATION")
+    fun saveMediaToStorage(bitmap: Bitmap): String? {
+
+        var filePath: String? = null
+
+        //Generating a file name
+        val filename = "img_${System.currentTimeMillis()}.png"
+
+        //Output stream
+        var fos: OutputStream? = null
+
+        //For devices running android >= Q
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //getting the contentResolver
+            applicationContext?.contentResolver?.also { resolver ->
+
+                val dirDest = File(Utils.getRootPath(this, false), "img")
+
+                //Content resolver will process the contentvalues
+                val contentValues = ContentValues().apply {
+
+                    //putting file information in content values
+                    put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                    put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, "$dirDest")
+                }
+
+                //MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                //Inserting the contentValues to contentResolver and getting the Uri
+                // val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                val imageUri: Uri? = resolver.insert(
+                    MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+                    contentValues
+                )
+
+                //Opening an outputstream with the Uri that we got
+                fos = imageUri?.let { resolver.openOutputStream(it) }
+
+            }
+        } else {
+            //These for devices running on android < Q
+            //So I don't think an explanation is needed here
+            val dirDest = File(Utils.getRootPath(this, false), "img")
+            if (!dirDest.exists()) {
+                dirDest.mkdirs()
+            }
+            val image = File(dirDest, filename)
+
+            Log.e("myFilePath", "$image")
+
+            filePath = image.toString()
+
+            fos = FileOutputStream(image)
+
+        }
+
+        fos?.use {
+            //Finally writing the bitmap to the output stream that we opened
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+            it.flush()
+            it.close()
+
+            Log.e("myFileFos", "Saved to Photos Main")
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                filePath = saveImageInternalDirectory(bitmap, filename)
+            }
+        }
+
+        return filePath
+    }
+
+    //This method only call Android 10 and above
+    private fun saveImageInternalDirectory(bitmap: Bitmap, filename: String): String? {
+
+        var filePath: String? = null
+
+        //Output stream
+        var fos: OutputStream? = null
+
+        val dirDest = File(Utils.getRootPath(this, true), "img")
+        if (!dirDest.exists()) {
+            dirDest.mkdirs()
+        }
+        val image = File(dirDest, filename)
+
+        try {
+            fos = FileOutputStream(image)
+        } catch (ex: FileNotFoundException) {
+            ex.printStackTrace()
+        }
+
+        @Suppress("SENSELESS_COMPARISON")
+        if (fos != null) {
+            //Finally writing the bitmap to the output stream that we opened
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+            fos.flush()
+            fos.close()
+
+            Log.e("myFileFos", "Saved to Photos Android 10 and above")
+
+            filePath = image.toString()
+
+        } else {
+            Log.e("myFOS", "FOS is null")
+        }
+
+        return filePath
+    }
+
+    fun savePdfFileToScopeStorage(view: View): String? {
+
+        var filePath: String? = null
+
+        //Generating a file name
+        val filename = "pdf_${System.currentTimeMillis()}.pdf"
+
+        //Output stream
+        var fos: OutputStream? = null
+
+        //For devices running android >= Q
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //getting the contentResolver
+            applicationContext?.contentResolver?.also { resolver ->
+
+                val dirDest = File(Utils.getRootPath(this, false), "pdf")
+
+                //Content resolver will process the contentvalues
+                val contentValues = ContentValues().apply {
+
+                    //putting file information in content values
+                    put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                    put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, "$dirDest")
+                }
+
+                //MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                //Inserting the contentValues to contentResolver and getting the Uri
+                val imageUri: Uri? =
+                    resolver.insert(
+                        MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+                        contentValues
+                    )
+
+                //Opening an outputstream with the Uri that we got
+                fos = imageUri?.let { resolver.openOutputStream(it) }
+
+            }
+        } else {
+            //These for devices running on android < Q
+            //So I don't think an explanation is needed here
+            val dirDest = File(Utils.getRootPath(this, false), "pdf")
+            if (!dirDest.exists()) {
+                dirDest.mkdirs()
+            }
+            val image = File(dirDest, filename)
+
+            Log.e("myFilePath", "$image")
+
+            filePath = image.toString()
+
+            fos = FileOutputStream(image)
+
+        }
+
+        fos?.use {
+            //Finally writing the bitmap to the output stream that we opened
+
+            val document = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(view.width, view.height, 1).create()
+            val page = document.startPage(pageInfo)
+
+            view.draw(page.canvas)
+            view.draw(page.canvas)
+            // finish the page
+            document.finishPage(page)
+
+            document.writeTo(it)
+
+            //This method save the Thumbnail pdf
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                filePath = savePdfThumbnailInternal(view, filename)
+            }
+
+        }
+
+        return filePath
+
+    }
+
+    private fun savePdfThumbnailInternal(view: View, filename: String): String? {
+
+        var filePath: String? = null
+
+        //Output stream
+        var fos: OutputStream? = null
+
+        val dirDest = File(Utils.getRootPath(this, true), "pdf")
+        if (!dirDest.exists()) {
+            dirDest.mkdirs()
+        }
+
+        try {
+            val file = File(dirDest, filename)
+
+            Log.e("myFilePath", "$file")
+
+            filePath = file.toString()
+
+            try {
+                fos = FileOutputStream(file)
+            } catch (ex: FileNotFoundException) {
+                ex.printStackTrace()
+            }
+
+        } catch (ex: java.lang.NullPointerException) {
+            ex.printStackTrace()
+        }
+
+        fos?.use {
+            //Finally writing the bitmap to the output stream that we opened
+            val document = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(view.width, view.height, 1).create()
+            val page = document.startPage(pageInfo)
+
+            view.draw(page.canvas)
+            view.draw(page.canvas)
+            // finish the page
+            document.finishPage(page)
+
+            document.writeTo(it)
+
+        }
+
+        return filePath
+
+    }
+
+    override fun onActivityResult(result: ActivityResult, currentRequestCode: Int) {
+
+        if (currentRequestCode == Constant.REQUEST_GELLERY_IMAGE) {
+
+            //hideFullScreenLayout()
+
+            @Suppress("UNNECESSARY_SAFE_CALL")
+            result?.data?.data?.also { uri ->
+
+                try {
+
+                    resizeImage(uri)
+
+                    Log.e("myFilePicker", "$currentPhotoPath")
+
+                    if (currentPhotoPath != null) {
+
+                        if (File(currentPhotoPath!!).exists()) {
+                            applyLocalSticker(currentPhotoPath!!)
+                        } else {
+                            Log.e("filePath", "path not found")
+                            Utils.showToast(this, "Image is not Find")
+                        }
+
+                    } else {
+                        Log.e("filePath", "path not found")
+                        Utils.showToast(this, "Image is not Find")
+                    }
+
+                } catch (ex: java.lang.Exception) {
+                    Log.e("myActivityResult", "${ex.message}")
+                    Utils.showToast(this, getString(R.string.something_went_wrong))
+                }
+
+            }
+        }
+
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun applyLocalSticker(localPathStickerFile: String) {
+        // hideFullScreenLayout()
+
+        Utils.clearGarbageCollection()
+
+        if (Utils.fileChecker(localPathStickerFile)) {
+
+            newCustomSticker = CustomImageView(this)
+            newCustomSticker?.updateCallBack(this@EditingScreen)
+
+            newCustomSticker?.let {
+
+                it.setImagePath(localPathStickerFile)
+
+                rootLayout?.addView(it)
+            }
+
+
+        } else {
+            Utils.showToast(this, getString(R.string.filter_not_found))
+        }
+    }
+
+    private fun resizeImage(uri: Uri) {
+        alterDocument(uri)
+    }
+
+    fun alterDocument(uri: Uri) {
+        val image: Bitmap? = getBitmapFromContentResolver(uri)
+        if (image != null) {
+            saveImage(image)
+        } else {
+            Utils.showToast(this, "${R.string.something_went_wrong}")
+        }
+    }
+
+    fun getBitmapFromContentResolver(shareUri: Uri): Bitmap? {
+        var bitmap: Bitmap? = null
+        try {
+            val parcelFileDescriptor: ParcelFileDescriptor =
+                contentResolver.openFileDescriptor(shareUri, "r")!!
+            val fileDescriptor: FileDescriptor = parcelFileDescriptor.fileDescriptor
+            bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+            parcelFileDescriptor.close()
+        } catch (ex: java.lang.Exception) {
+            ex.printStackTrace()
+        } catch (ex: OutOfMemoryError) {
+            ex.printStackTrace()
+        }
+        return bitmap
+    }
+
+    fun saveImage(image: Bitmap) {
+        //var bitmap = image
+        try {
+
+            val file = createImageFile()
+            Log.e("myFile", "$file")
+            val outputStream = BufferedOutputStream(FileOutputStream(file))
+
+            image.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            workerHandler.postDelayed({
+                image.recycle()
+                Utils.clearGarbageCollection()
+            }, 1000)
+
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+
+    }
+
+    @Throws(IOException::class)
+    fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = System.currentTimeMillis().toString()
+        val storageDir = File("$externalCacheDir")
+        return File.createTempFile(
+            "PNG_${timeStamp}_", /* prefix */
+            ".png", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        try {
+
+            super.onActivityResult(requestCode, resultCode, data)
+
+            if (requestCode == Constant.REQUEST_CAPTURE_IMAGE && resultCode == Activity.RESULT_OK) {
+
+                try {
+
+                    if (data != null && data.extras != null) {
+
+                        val imageBitmap = data.extras!!["data"] as Bitmap?
+                        imageBitmap?.let { addImage(it) }
+
+                    }
+
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            if (requestCode == Constant.REQUEST_GELLERY_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
+
+                // hideFullScreenLayout()
+
+                try {
+
+                    val selectPath = data.data
+                    val filePath = getRealPathFromURI(selectPath!!)
+
+                    filePath?.let {
+                        if (File(it).exists()) {
+
+                            applyLocalSticker(it)
+                        } else {
+                            Log.e("filePath", "path not found")
+                        }
+                    }
+
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+
+        } catch (ex: java.lang.Exception) {
+            ex.printStackTrace()
+        }
+
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getRealPathFromURI(contentURI: Uri): String? {
+        val filePath: String?
+        val cursor: Cursor? = contentResolver.query(contentURI, null, null, null, null)
+        if (cursor == null) {
+            filePath = contentURI.path
+        } else {
+            cursor.moveToFirst()
+            val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            filePath = cursor.getString(idx)
+            cursor.close()
+        }
+        return filePath
+    }
+
+    private fun addImage(bitmap: Bitmap?) {
+
+        try {
+
+            newCustomSticker = CustomImageView(this)
+            newCustomSticker?.updateCallBack(this@EditingScreen)
+
+            newCustomSticker?.let {
+
+                if (bitmap != null) {
+                    it.setBitMap(bitmap)
+                }
+
+                rootLayout?.addView(it)
+            }
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun onPermissionDenied() {
+        Log.d("permissionWorking", "permission is Denied")
+    }
+
+    override fun onPermissionPermanentlyDenied() {
+        showPrompt()
+        Log.d("permissionWorking", "OnPermissionPermanentlyDenied Go to Setting")
+    }
+
+    override fun onPermissionGranted() {
+
+        openGalleryNew()
+        Log.d("permissionWorking", "Permission is Granted")
+
+    }
+
+    private fun showPrompt() {
+        val alertBuilder = androidx.appcompat.app.AlertDialog.Builder(this@EditingScreen)
+        alertBuilder.setCancelable(true)
+        alertBuilder.setTitle("Permission necessary")
+        alertBuilder.setMessage("Allow this app to access Photos and videos?")
+        alertBuilder.setPositiveButton(
+            getString(R.string.yes)
+        ) { _, _ -> //hasPermissions(context,permissions);
+            showSettings()
+        }
+        val alert = alertBuilder.create()
+        alert.show()
+    }
+
+    private fun showSettings() {
+        val intent = Intent()
+        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        val uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivity(intent)
+    }
+
+    private fun openGalleryNew() {
+
+        val collection =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                MediaStore.Video.Media.getContentUri(
+                    MediaStore.VOLUME_EXTERNAL
+                )
+            } else {
+                MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+            }
+
+        try {
+            val intent =
+                Intent(Intent.ACTION_PICK, collection).apply {
+                    type = "image/*"
+                }
+            intent.resolveActivity(packageManager)?.also {
+                initRequestCode(intent)
+            }
+        } catch (e: ActivityNotFoundException) {
+            Utils.showToast(this, "${e.message}")
+        }
+    }
+
+    var currentRequestCode = 0
+    var currentPhotoPath: String? = null
+
+    private fun initRequestCode(takePictureIntent: Intent) {
+        currentRequestCode = Constant.REQUEST_GELLERY_IMAGE
+        startActivityForResult.launch(takePictureIntent)
+    }
+
+    private val startActivityForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                onActivityResultListener.onActivityResult(result, currentRequestCode)
+            }
+        }
 }

@@ -5,6 +5,12 @@ import java.util.HashMap
 
 object Constant {
 
+    const val REQUEST_CAPTURE_IMAGE = 10101
+    const val REQUEST_GELLERY_IMAGE = 20202
+
+    @JvmStatic
+    val fileProvider: String = "com.example.designlabel.fileprovider"
+
     var categoryName: String = "candy"
     var labelNumber: Int = 1
 
