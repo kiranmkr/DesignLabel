@@ -1,10 +1,8 @@
 package com.example.designlabel.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-@SuppressLint("StaticFieldLeak")
 public class App extends Application {
 
     public static Context context;
